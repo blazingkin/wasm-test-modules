@@ -1,5 +1,8 @@
 CC=make
-subfolders=hello
+subfolders=hello nrequest
+modules=$(addsuffix .wasm, $(subfolders))
 
-all: $(subfolders)
-	$(CC) -C $(subfolders)
+all: $(modules)
+
+%.wasm: %
+	$(MAKE) -C $<
